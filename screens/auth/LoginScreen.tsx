@@ -2,10 +2,10 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../constants/Layout";
-import { HStack, Input, VStack } from "native-base";
+import {  Input, VStack } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import homeScreen from "../teacher pages/HomeScreenT";
-export default function LoginScreen() {
+
+const LoginScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -35,12 +35,12 @@ export default function LoginScreen() {
               </View>
             </VStack>
             <VStack padding={7} space={5}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("HomeScreenT")}>
                 <View style={styles.bttn}>
                   <Text style={styles.bttnTxt}>Giriş Yap</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("ForgotPasswordScreen")}>
                 <View style={styles.bttn}>
                   <Text style={styles.bttnTxt}>Şifremi Unuttum</Text>
                   {/* şifremi unuttum modali eklenecek */}
@@ -53,7 +53,7 @@ export default function LoginScreen() {
     </View>
   );
 }
-
+export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",

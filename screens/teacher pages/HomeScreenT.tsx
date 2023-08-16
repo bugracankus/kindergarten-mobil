@@ -5,7 +5,7 @@ import { HStack, Input, VStack } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Layout from "../../constants/Layout";
 
-export default function HomeScreenT() {
+const HomeScreenT = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -32,7 +32,7 @@ export default function HomeScreenT() {
         <View style={styles.contentGround}>
           <VStack padding={5} space={5}>
             <Text style={styles.txt}>ZEYTİN SINIFI</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("ServicePage")}>
               <View style={styles.bttn}>
                 <HStack style={{ alignItems: "center" }} space={7}>
                   <View>
@@ -48,7 +48,7 @@ export default function HomeScreenT() {
                 </HStack>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("EndDayScreen")}>
               <View style={styles.bttn}>
                 <HStack style={{ alignItems: "center" }} space={7}>
                   <View>
@@ -64,7 +64,7 @@ export default function HomeScreenT() {
                 </HStack>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("ParentMessageScreen")}>
               <View style={styles.bttn}>
                 <HStack style={{ alignItems: "center" }} space={7}>
                   <View>
@@ -96,7 +96,7 @@ export default function HomeScreenT() {
                 </HStack>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("AnnouncementScreen")}>
               <View style={styles.bttn}>
                 <HStack style={{ alignItems: "center" }} space={7}>
                   <View>
@@ -112,7 +112,7 @@ export default function HomeScreenT() {
                 </HStack>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("CurriculumScreen")}>
               <View style={styles.bttn}>
                 <HStack style={{ alignItems: "center" }} space={7}>
                   <View>
@@ -128,7 +128,8 @@ export default function HomeScreenT() {
                 </HStack>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("NewsletterScreen")}>
+
               <View style={styles.bttn}>
                 <HStack style={{ alignItems: "center" }} space={7}>
                   <View>
@@ -144,7 +145,7 @@ export default function HomeScreenT() {
                 </HStack>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("FoodCalendar")}>
               <View style={styles.bttn}>
                 <HStack style={{ alignItems: "center" }} space={7}>
                   <View>
@@ -166,7 +167,7 @@ export default function HomeScreenT() {
     </View>
   );
 }
-
+export default HomeScreenT;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

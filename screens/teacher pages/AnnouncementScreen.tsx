@@ -1,55 +1,55 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Layout from "../../constants/Layout";
 import Title from "../../components/Title";
-import List from "../../components/List";
 import Background from "../../components/Background";
-import { HStack, VStack } from "native-base";
-import Button from "../../components/Button";
+import { HStack, Input, VStack } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import AnnouncementBox from "../../components/AnnouncementBox";
 
-const EndDayScreen = () => {
-  
+export default function AnnouncementScreen() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Title title={"GÜN SONU"} />
+      <Title title={"DUYURULAR"} />
       <View>
-        <Background title={"ÖĞRENCİLERİM"} />
-        <ScrollView>
+        <Background title={"DUYURULARIM"} />
+        <ScrollView
+          style={{
+            marginTop: Layout.window.height * 0.115,
+            height: Layout.window.height * 1,
+          }}
+        >
           <View style={styles.listGround}>
             <VStack space={3}>
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-            </VStack>
-            <VStack padding={3} space={4}>
-              <Button
-                bttnTxt={"Devam Et"}
-                backgroundColor={"#AA2193"}
-                textColor={"white"}
-                navigation={navigation}
-                navigate={"EndDaySelectScreen"}
+              <AnnouncementBox
+                topic={"Yüzme Eğitimi"}
+                history={"03 Temmuz 2023"}
+                content={
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+                }
               />
-               <Button
-                bttnTxt={"Tümünü Seç"}
-                backgroundColor={"#AA2193"}
-                textColor={"white"}
-                navigation={undefined}
-                navigate={undefined}
+               <AnnouncementBox
+                topic={"Yüzme Eğitimi"}
+                history={"03 Temmuz 2023"}
+                content={
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+                }
               />
-               <Button
-                bttnTxt={"Seçimleri Kaldır"}
-                backgroundColor={"#AA2193"}
-                textColor={"white"}
-                navigation={undefined}
-                navigate={undefined}
+               <AnnouncementBox
+                topic={"Yüzme Eğitimi"}
+                history={"03 Temmuz 2023"}
+                content={
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+                }
               />
             </VStack>
           </View>
@@ -58,7 +58,7 @@ const EndDayScreen = () => {
     </View>
   );
 }
-export default EndDayScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -105,8 +105,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   listGround: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: Layout.window.height * 0.12,
+    marginTop: Layout.window.height * 0.022,
   },
 });

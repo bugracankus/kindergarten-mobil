@@ -9,12 +9,11 @@ import { HStack, VStack } from "native-base";
 import Button from "../../components/Button";
 import { ScrollView } from "react-native-gesture-handler";
 
-const EndDayScreen = () => {
-  
+const ParentMessageScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Title title={"GÜN SONU"} />
+      <Title title={"VELİYE MESAJ"} />
       <View>
         <Background title={"ÖĞRENCİLERİM"} />
         <ScrollView>
@@ -35,16 +34,16 @@ const EndDayScreen = () => {
                 backgroundColor={"#AA2193"}
                 textColor={"white"}
                 navigation={navigation}
-                navigate={"EndDaySelectScreen"}
+                navigate={"ParentMessageSelectScreen"}
               />
-               <Button
+              <Button
                 bttnTxt={"Tümünü Seç"}
                 backgroundColor={"#AA2193"}
                 textColor={"white"}
                 navigation={undefined}
                 navigate={undefined}
               />
-               <Button
+              <Button
                 bttnTxt={"Seçimleri Kaldır"}
                 backgroundColor={"#AA2193"}
                 textColor={"white"}
@@ -57,8 +56,9 @@ const EndDayScreen = () => {
       </View>
     </View>
   );
-}
-export default EndDayScreen;
+};
+export default ParentMessageScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -5,7 +5,7 @@ import Layout from "../../constants/Layout";
 import { HStack, Input, VStack } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import homeScreen from "../teacher pages/HomeScreenT";
-export default function ForgotPasswordScreen() {
+const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -40,8 +40,8 @@ export default function ForgotPasswordScreen() {
       </SafeAreaView>
     </View>
   );
-}
-
+};
+export default ForgotPasswordScreen;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   inpContainer: {
     width: Layout.window.width * 1,
     height: Layout.window.height * 0.4,
-    marginTop:Layout.window.height*0.15,
+    marginTop: Layout.window.height * 0.15,
     backgroundColor: "#AA2193",
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
   bttn: {
     height: Layout.window.height * 0.05,
     width: Layout.window.width * 0.8,
-    backgroundColor:"white",
+    backgroundColor: "white",
     borderRadius: 10,
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center",
   },
-  bttnTxt:{
-    fontSize:22,
-    color:"#AA2193",
-  }
+  bttnTxt: {
+    fontSize: 22,
+    color: "#AA2193",
+  },
 });

@@ -6,7 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Layout from "../../constants/Layout";
 
 import Title from "../../components/Title";
-export default function ServicePage() {
+const ServicePage = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -20,7 +20,7 @@ export default function ServicePage() {
     </View>
   );
 }
-
+export default ServicePage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
