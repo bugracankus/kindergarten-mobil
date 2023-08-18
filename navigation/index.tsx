@@ -16,13 +16,17 @@ import CurriculumScreen from "../screens/teacher pages/CurriculumScreen";
 import NewsletterScreen from "../screens/teacher pages/NewsletterScreen";
 import FoodCalendar from "../screens/teacher pages/FoodCalendar";
 import HomeScreenT from "../screens/teacher pages/HomeScreenT";
+import PHomePages from "../screens/parents pages/PHomePages";
+import PEndDayScreen from "../screens/parents pages/PEndDayScreen";
+import PTeacherMessageScreen from "../screens/parents pages/PTeacherMessageScreen";
+import PTeacherMessageSelectScreen from "../screens/parents pages/PTeacherMessageSelectScreen";
 const Stack = createStackNavigator();
 export default function Navigation() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="LoginScreen"
+          initialRouteName="PHomePages"
           screenOptions={{
             headerShown: false,
           }}
@@ -40,8 +44,10 @@ export default function Navigation() {
           <Stack.Screen name="CurriculumScreen" component={CurriculumScreen} />
           <Stack.Screen name="NewsletterScreen" component={NewsletterScreen} />
           <Stack.Screen name="FoodCalendar" component={FoodCalendar} />
-
-
+          <Stack.Screen name="PHomePages" component={PHomePages} />
+          <Stack.Screen name="PEndDayScreen" component={PEndDayScreen} />
+          <Stack.Screen name="PTeacherMessageScreen" component={PTeacherMessageScreen} />
+          <Stack.Screen name="PTeacherMessageSelectScreen" component={PTeacherMessageSelectScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

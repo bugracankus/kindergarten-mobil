@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   mssgTxt: {
     width: Layout.window.width * 0.58,
-    height: Layout.window.height * 0.1,
+    height: Layout.window.height * 0.105,
     fontSize:13,
     color:"white",
     justifyContent:"center",

@@ -3,31 +3,28 @@ import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Layout from "../../constants/Layout";
 import Title from "../../components/Title";
+import List from "../../components/List";
 import Background from "../../components/Background";
 import { HStack, VStack } from "native-base";
 import Button from "../../components/Button";
 import { ScrollView } from "react-native-gesture-handler";
-import List from "../../components/List";
 
-const EndDayScreen = () => {
-  
+const PTeacherMessageScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Title title={"GÜN SONU"} />
+      <Title title={"ÖĞRETMENE MESAJ"} />
       <View>
-        <Background title={"ÖĞRENCİLERİM"} />
+        <Background title={"ÖĞRETMENLERİM"} />
         <ScrollView>
           <View style={styles.listGround}>
             <VStack space={3}>
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
-              <List name={"Ayşe Bingöl"} />
+              <List name={"Ayşe Öğretmen"} />
+              <List name={"Ayşe Öğretmen"} />
+              <List name={"Ayşe Öğretmen"} />
+              <List name={"Ayşe Öğretmen"} />
+              <List name={"Ayşe Öğretmen"} />
+              <List name={"Ayşe Öğretmen"} />
             </VStack>
             <VStack padding={3} space={4}>
               <Button
@@ -35,16 +32,16 @@ const EndDayScreen = () => {
                 backgroundColor={"#AA2193"}
                 textColor={"white"}
                 navigation={navigation}
-                navigate={"EndDaySelectScreen"}
+                navigate={"PTeacherMessageSelectScreen"}
               />
-               <Button
+              <Button
                 bttnTxt={"Tümünü Seç"}
                 backgroundColor={"#AA2193"}
                 textColor={"white"}
                 navigation={undefined}
                 navigate={undefined}
               />
-               <Button
+              <Button
                 bttnTxt={"Seçimleri Kaldır"}
                 backgroundColor={"#AA2193"}
                 textColor={"white"}
@@ -57,8 +54,9 @@ const EndDayScreen = () => {
       </View>
     </View>
   );
-}
-export default EndDayScreen;
+};
+export default PTeacherMessageScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
