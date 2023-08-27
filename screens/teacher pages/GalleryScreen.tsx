@@ -14,7 +14,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import Layout from "../../constants/Layout";
 import Title from "../../components/Title";
-import { HStack, VStack, Box } from "native-base"; // Box eklemeyi unutmayın
+import { HStack, VStack, Box } from "native-base";
 
 export default function GalleryScreen() {
     const navigation = useNavigation();
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 10,
         alignSelf: "center",
-        marginBottom:200,
+        marginBottom:100,
     },
     bttnTxt: {
         fontSize: 18,
