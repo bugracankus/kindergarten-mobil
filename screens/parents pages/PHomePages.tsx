@@ -80,7 +80,7 @@ const PHomePages = () => {
                 </HStack>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("PGalleryScreen")}>
               <View style={styles.bttn}>
                 <HStack style={{ alignItems: "center" }} space={7}>
                   <View>

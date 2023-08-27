@@ -20,13 +20,15 @@ import PHomePages from "../screens/parents pages/PHomePages";
 import PEndDayScreen from "../screens/parents pages/PEndDayScreen";
 import PTeacherMessageScreen from "../screens/parents pages/PTeacherMessageScreen";
 import PTeacherMessageSelectScreen from "../screens/parents pages/PTeacherMessageSelectScreen";
+import GalleryScreen from "../screens/teacher pages/GalleryScreen";
+import PGalleryScreen from "../screens/parents pages/PGalleryScreen";
 const Stack = createStackNavigator();
 export default function Navigation() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="PHomePages"
+          initialRouteName="LoginScreen"
           screenOptions={{
             headerShown: false,
           }}
@@ -48,6 +50,10 @@ export default function Navigation() {
           <Stack.Screen name="PEndDayScreen" component={PEndDayScreen} />
           <Stack.Screen name="PTeacherMessageScreen" component={PTeacherMessageScreen} />
           <Stack.Screen name="PTeacherMessageSelectScreen" component={PTeacherMessageSelectScreen} />
+          <Stack.Screen name="GalleryScreen" component={GalleryScreen} />
+          <Stack.Screen name="PGalleryScreen" component={PGalleryScreen} />
+
+
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
