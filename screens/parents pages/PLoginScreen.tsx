@@ -1,12 +1,54 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Alert } from "react-native";
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../constants/Layout";
 import {  Input, VStack } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PLoginScreen = () => {
   const navigation = useNavigation();
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    if (phoneNumber !== "" && password !== "") {
+      axios.post('https://epic-shortly-minnow.ngrok-free.app/api/custodian-login', {
+        phoneNumber,
+        password,
+      }).then(async (res) => {
+        console.log(res.data);
+        if (res.data.type === "success") {
+          await AsyncStorage.setItem('token', res.data.token);
+          navigation.navigate("PHomePages");
+        } else if (res.data.type === "error") {
+          Alert.alert(
+            'Hata!',
+            res.data.error,
+            [{ text: 'Tamam' }],
+            { cancelable: false }
+          );
+        } else {
+          Alert.alert(
+            'Hata!',
+            'Bilinmeyen bir hata meydana geldi!',
+            [{ text: 'Tamam' }],
+            { cancelable: false }
+          );
+        }
+      });
+    } else {
+      Alert.alert(
+        'Hata!',
+        'Tüm alanlar zorunludur!',
+        [{ text: 'Tamam' }],
+        { cancelable: false }
+      );
+    }
+  };  
+
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -24,18 +66,25 @@ const PLoginScreen = () => {
             <Text style={styles.infoTxt}>Giriş Yap</Text>
             <VStack padding={7} space={5}>
               <View style={styles.input}>
-                <Input
-                  variant="unstyled"
+              <Input
                   placeholder="Telefon No"
                   fontSize={22}
+                  onChangeText={(text) => setPhoneNumber(text)}
+                  value={phoneNumber}
                 />
               </View>
               <View style={styles.input}>
-                <Input variant="unstyled" placeholder="Şifre" fontSize={22} />
+                <Input
+                  variant="unstyled"
+                  placeholder="Şifre"
+                  fontSize={22}
+                  onChangeText={(text) => setPassword(text)}
+                  value={password}
+                />
               </View>
             </VStack>
             <VStack padding={7} space={5}>
-              <TouchableOpacity onPress={() => navigation.navigate("PHomePages")}>
+              <TouchableOpacity onPress={handleLogin}>
                 <View style={styles.bttn}>
                   <Text style={styles.bttnTxt}>Giriş Yap</Text>
                 </View>

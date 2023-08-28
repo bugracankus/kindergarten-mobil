@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,6 +6,7 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Layout from "../../constants/Layout";
@@ -14,9 +15,39 @@ import Background from "../../components/Background";
 import { HStack, Input, VStack } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import AnnouncementBox from "../../components/AnnouncementBox";
+import axios from "axios";
 
 export default function AnnouncementScreen() {
   const navigation = useNavigation();
+  const [announcements, setAnnouncements] = useState([]);
+
+  const getAnnouncements = () => {
+    axios.get('https://epic-shortly-minnow.ngrok-free.app/api/announcements').then((res) => {
+      console.log(res.data.announcements);
+      if (res.data.type === "success") {
+        setAnnouncements(res.data.announcements);
+      } else if (res.data.type === "error") {
+        Alert.alert(
+          'Hata!',
+          res.data.error,
+          [{ text: 'Tamam' }],
+          { cancelable: false }
+        );
+      } else {
+        Alert.alert(
+          'Hata!',
+          'Bilinmeyen bir hata meydana geldi!',
+          [{ text: 'Tamam' }],
+          { cancelable: false }
+        );
+      }
+    });
+  }
+
+  useEffect(() => {
+    getAnnouncements();
+  }, [])
+
   return (
     <View style={styles.container}>
       <Title title={"DUYURULAR"} />
@@ -30,27 +61,16 @@ export default function AnnouncementScreen() {
         >
           <View style={styles.listGround}>
             <VStack space={3}>
-              <AnnouncementBox
-                topic={"Yüzme Eğitimi"}
-                history={"03 Temmuz 2023"}
-                content={
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-                }
-              />
-               <AnnouncementBox
-                topic={"Yüzme Eğitimi"}
-                history={"03 Temmuz 2023"}
-                content={
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-                }
-              />
-               <AnnouncementBox
-                topic={"Yüzme Eğitimi"}
-                history={"03 Temmuz 2023"}
-                content={
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-                }
-              />
+              {
+                announcements.map((item, index) => (
+                  <AnnouncementBox
+                    key={index}
+                    topic={item.topic}
+                    history={item.created_at}
+                    content={item.announcement}
+                  />
+                ))
+              }
             </VStack>
           </View>
         </ScrollView>

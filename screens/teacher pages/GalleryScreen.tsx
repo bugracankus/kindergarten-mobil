@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
     StyleSheet,
     Text,
@@ -10,43 +10,74 @@ import {
     PanResponder,
     Animated,
     ImageBackground,
+    Alert
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Layout from "../../constants/Layout";
 import Title from "../../components/Title";
 import { HStack, VStack, Box } from "native-base";
+import axios from "axios";
 
 export default function GalleryScreen() {
     const navigation = useNavigation();
     const [selectedImage, setSelectedImage] = useState(null);
     const scrollX = useRef(new Animated.Value(0)).current;
 
-    const images = [
-        require("../../assets/img/images1.jpeg"),
-        require("../../assets/img/images2.jpeg"),
-        require("../../assets/img/images3.jpeg"),
-        require("../../assets/img/images4.jpeg"),
-        require("../../assets/img/images5.jpeg"),
-        require("../../assets/img/images6.jpeg"),
-        require("../../assets/img/images1.jpeg"),
-        require("../../assets/img/images2.jpeg"),
-        require("../../assets/img/images3.jpeg"),
-        require("../../assets/img/images4.jpeg"),
-        require("../../assets/img/images5.jpeg"),
-        require("../../assets/img/images6.jpeg"),
-        require("../../assets/img/images1.jpeg"),
-        require("../../assets/img/images2.jpeg"),
-        require("../../assets/img/images3.jpeg"),
-        require("../../assets/img/images4.jpeg"),
-        require("../../assets/img/images5.jpeg"),
-        require("../../assets/img/images6.jpeg"),
-        require("../../assets/img/images1.jpeg"),
-        require("../../assets/img/images2.jpeg"),
-        require("../../assets/img/images3.jpeg"),
-        require("../../assets/img/images4.jpeg"),
-        require("../../assets/img/images5.jpeg"),
-        require("../../assets/img/images6.jpeg"),
-    ];
+    const [images, setImages] = useState([]);
+
+    const getGallery = () => {
+        axios.get('https://epic-shortly-minnow.ngrok-free.app/api/gallery').then((res) => {
+            console.log(res.data);
+            if (res.data.type === "success") {
+                setImages(res.data.images);
+            } else if (res.data.type === "error") {
+                Alert.alert(
+                    'Hata!',
+                    res.data.error,
+                    [{ text: 'Tamam' }],
+                    { cancelable: false }
+                );
+            } else {
+                Alert.alert(
+                    'Hata!',
+                    'Bilinmeyen bir hata meydana geldi!',
+                    [{ text: 'Tamam' }],
+                    { cancelable: false }
+                );
+            }
+        });
+    }
+
+    useEffect(() => {
+        getGallery();
+    }, [])
+
+    // const images = [
+    //     require("../../assets/img/images1.jpeg"),
+    //     require("../../assets/img/images2.jpeg"),
+    //     require("../../assets/img/images3.jpeg"),
+    //     require("../../assets/img/images4.jpeg"),
+    //     require("../../assets/img/images5.jpeg"),
+    //     require("../../assets/img/images6.jpeg"),
+    //     require("../../assets/img/images1.jpeg"),
+    //     require("../../assets/img/images2.jpeg"),
+    //     require("../../assets/img/images3.jpeg"),
+    //     require("../../assets/img/images4.jpeg"),
+    //     require("../../assets/img/images5.jpeg"),
+    //     require("../../assets/img/images6.jpeg"),
+    //     require("../../assets/img/images1.jpeg"),
+    //     require("../../assets/img/images2.jpeg"),
+    //     require("../../assets/img/images3.jpeg"),
+    //     require("../../assets/img/images4.jpeg"),
+    //     require("../../assets/img/images5.jpeg"),
+    //     require("../../assets/img/images6.jpeg"),
+    //     require("../../assets/img/images1.jpeg"),
+    //     require("../../assets/img/images2.jpeg"),
+    //     require("../../assets/img/images3.jpeg"),
+    //     require("../../assets/img/images4.jpeg"),
+    //     require("../../assets/img/images5.jpeg"),
+    //     require("../../assets/img/images6.jpeg"),
+    // ];
 
     const openImage = (imageIndex) => {
         setSelectedImage(imageIndex);
@@ -67,13 +98,13 @@ export default function GalleryScreen() {
 
     const renderImages = () => {
         const rows = [];
-        for (let i = 0; i < images.length; i += 3) {
-            const rowImages = images.slice(i, i + 3);
+        for (let i = 0; i < images?.length; i += 3) {
+            const rowImages = images?.slice(i, i + 3);
             const imageRow = (
                 <HStack key={i} padding={2} space={2}>
                     {rowImages.map((image, index) => (
                         <TouchableOpacity key={index} onPress={() => openImage(image)}>
-                            <Image source={image} style={styles.img} />
+                            <Image source={{ uri: "https://epic-shortly-minnow.ngrok-free.app/resources/" + image.image }} style={styles.img} />
                         </TouchableOpacity>
                     ))}
                 </HStack>
@@ -94,18 +125,9 @@ export default function GalleryScreen() {
                 <View style={styles.main}>
                     <ScrollView>
                         <VStack>{renderImages()}</VStack>
-                        <TouchableOpacity>
-                        <View style={styles.bttn}>
-                            <Text style={styles.bttnTxt}>Fotoğraf Çek</Text>
-                        </View>
-                    </TouchableOpacity>
                     </ScrollView>
-                    
-
                 </View>
-
             </View>
-
             {/* Büyük resmi gösteren modal */}
             {selectedImage !== null && (
                 <Modal
@@ -189,7 +211,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 10,
         alignSelf: "center",
-        marginBottom:100,
+        marginBottom: 100,
     },
     bttnTxt: {
         fontSize: 18,
