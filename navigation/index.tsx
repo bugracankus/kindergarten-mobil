@@ -26,13 +26,14 @@ import UserSelectionScreen from "../screens/auth/UserSelectionScreen";
 import PLoginScreen from "../screens/parents pages/PLoginScreen";
 import LoginScreenT from "../screens/teacher pages/LoginScreenT";
 import PForgotPasswordScreen from "../screens/parents pages/PForgotPasswordScreen";
+import PexampleScreen from "../screens/parents pages/PexampleScreen";
 const Stack = createStackNavigator();
 export default function Navigation() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="UserSelectionScreen"
+          initialRouteName="LoginScreen"
           screenOptions={{
             headerShown: false,
           }}
